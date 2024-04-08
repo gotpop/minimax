@@ -1,5 +1,4 @@
-import Header from "@components/Header"
-import PopOverImage from "@components/PopOverImage"
+import Brands from "@components/Brands"
 import h from "@utils/jsxFactory"
 import { useCSS } from "src/hooks/useCSS"
 
@@ -12,38 +11,24 @@ export const useName = import.meta.file
 
 const Hero = async ({ title, text }: HeroProps) => {
   const { css } = useCSS({ meta: import.meta })
-  const headerItem = await Header()
-
-  const popOverImageItem = await PopOverImage({
-    title: "Nice image",
-    text: "Nice image",
+  const brandsItem = await Brands({
+    title: "Brands",
+    text: "Brands",
   })
 
   return (
     <section class={useName}>
       <style>{css}</style>
-      {headerItem}
-      <div class="container">
-        <article>
-          <h1>{title}</h1>
+      <div class="hero-inner">
+        <div class="inner-intro">
+          <h2>{title}</h2>
           <p>{text}</p>
-          <a href="#liam">More</a>
-
-          <selectlist id="browser-filter">
-            <button type="selectlist">
-              <selectedoption></selectedoption>
-            </button>
-            <option value="edge" checked="">
-              Edge
-            </option>
-            <option value="chrome">Chrome</option>
-            <option value="firefox">Firefox</option>
-            <option value="brave">Brave</option>
-            <option value="safari">Safari</option>
-            <option value="opera">Opera</option>
-          </selectlist>
-        </article>
+          <a href="#liam" class="link-button">
+            Learn More
+          </a>
+        </div>
       </div>
+      {brandsItem}
     </section>
   )
 }

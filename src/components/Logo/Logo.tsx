@@ -1,15 +1,20 @@
+import Icon from "@components/Icon"
 import h from "@utils/jsxFactory"
 import { useCSS } from "src/hooks/useCSS"
 
-export const useName = import.meta.file.split(".").shift()?.toLowerCase()
+export const useName = import.meta.file
+  .split(".")
+  .shift()
+  ?.toLowerCase()
 
 const Logo = () => {
   const { css } = useCSS({ meta: import.meta })
 
   return (
-    <a class={useName}>
+    <a href="/" class={useName}>
       <style>{css}</style>
-      <h1>Logo</h1>
+      <Icon iconName="child_care" />
+      <h1>SingleMum</h1>
     </a>
   )
 }

@@ -1,0 +1,7 @@
+@scope {
+  :scope {
+    .material-symbols-outlined {
+      font-size: var(--font-size, 3rem);
+    }
+  }
+}

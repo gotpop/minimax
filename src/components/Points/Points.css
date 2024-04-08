@@ -1,0 +1,47 @@
+@scope {
+  :scope {
+    align-content: center;
+    background-color: white;
+    display: grid;
+    grid-column: full-width;
+    grid-template-columns: subgrid;
+    place-items: center;
+
+    .inner {
+      gap: 2rem;
+      padding: 4rem 0;
+      display: grid;
+      grid-column: col-start / col-end;
+      grid-template-columns: subgrid;
+      gap: 2rem;
+
+      > *:not(.intro) {
+        grid-column: span 4;
+        background-color: whitesmoke;
+        padding: 2rem;
+
+        .icon {
+          --font-size: 2rem;
+        }
+
+        h3 {
+          font-size: 2rem;
+          margin: 0 0 1rem;
+        }
+      }
+
+      .intro {
+        grid-column: col;
+        text-align: center;
+        display: grid;
+        justify-content: center;
+        gap: 1rem;
+
+        .title {
+          font-size: 2rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

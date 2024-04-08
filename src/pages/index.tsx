@@ -1,28 +1,28 @@
+import AppFull from "@layouts/app-full"
 import Articles from "@components/Articles"
 import Footer from "@components/Footer"
 import GridFull from "@components/GridFull"
+import Header from "@components/Header"
 import Hero from "@components/Hero"
-import AppFull from "@layouts/app-full"
+import Points from "@components/Points"
 import h from "@utils/jsxFactory"
 
 const indexPage = async () => {
+  const headerItem = await Header()
+  const pointsItem = await Points({})
   const heroComponent = await Hero({
-    title: "Welcome to the home page",
-    text: "This is the home page of the website",
+    title: "The single dependency framework",
+    text: "SingleMum is a single dependency framework for building web applications. It is a simple, fast, and light framework.",
   })
-
-  // const galleryItem = await Gallery({
-  //   title: "Nice gallery",
-  //   content: "Nice gallery",
-  // })
 
   const articlesItem = await Articles()
 
   return (
     <AppFull title="Home">
       <GridFull>
+        {headerItem}
         {heroComponent}
-        {/* {galleryItem} */}
+        {pointsItem}
         {articlesItem}
         <Footer />
       </GridFull>

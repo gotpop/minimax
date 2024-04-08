@@ -1,15 +1,11 @@
 @scope {
   :scope {
+    align-content: center;
+    background-color: white;
     display: grid;
     grid-column: col-start / full-width-end;
-    height: 100vh;
     grid-template-columns: subgrid;
     place-items: center;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    background-color: white;
-    align-content: center;
-    /* gap: 3rem; */
 
     .wrap {
       gap: 2rem;
