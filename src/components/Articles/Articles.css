@@ -1,56 +1,22 @@
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes rotate {
-  from {
-    --angle: 0deg;
-  }
-  to {
-    --angle: 360deg;
-  }
-}
-
 @scope {
   :scope {
-    --direction: col-start / full-width-end;
-    --directionImage: 5 / col-end;
-    --directionIntro: col-start / span 6;
-
     display: grid;
-    grid-column: full-width-start / full-width-end;
+    grid-column: full-width;
     grid-template-columns: subgrid;
+  }
 
-    .article {
-      background-color: #f1f1f1;
-      display: grid;
-      grid-column: var(--direction);
-      padding: 2rem 0;
-      place-items: center;
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
 
-      .intro {
-        grid-column: var(--directionIntro);
-      }
-
-      .image {
-        grid-column: var(--directionImage);
-      }
-
-      &:nth-child(2n) {
-        --direction: full-width-start / col-end;
-
-        .intro {
-          --directionIntro: 6 / col-end;
-        }
-
-        .image {
-          --directionImage: col-start / span 8;
-        }
-      }
+  @keyframes rotate {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
     }
   }
 }

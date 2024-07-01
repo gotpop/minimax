@@ -8,18 +8,13 @@ type PopOverImageProps = {
   height?: number
 }
 
-export const useName = import.meta.file
-  .split(".")
-  .shift()
-  ?.toLowerCase()
-
 const PopOverImage = async ({
   title,
   text,
   width = 500,
   height = 300,
 }: PopOverImageProps) => {
-  const { css } = useCSS({ meta: import.meta })
+  const { css, useName } = useCSS({ meta: import.meta })
 
   return (
     <div class={useName}>
@@ -28,12 +23,14 @@ const PopOverImage = async ({
         <img
           src={`https://picsum.photos/${width}/${height}`}
           alt="Nice image"
+          loading="lazy"
         />
       </button>
       <figure id="mypopover" popover="auto" class="figure">
         <img
           src={`https://picsum.photos/${width}/${height}`}
           alt="Nice image"
+          loading="lazy"
         />
         <figcaption>{text}</figcaption>
       </figure>

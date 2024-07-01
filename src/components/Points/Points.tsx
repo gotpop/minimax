@@ -1,101 +1,36 @@
 import Icon from "@components/Icon"
+import { articles } from "./Points.data"
 import h from "@utils/jsxFactory"
 import { useCSS } from "src/hooks/useCSS"
+import Point from "./Point/Point"
 
-type PointsProps = { title?: string; content?: string }
+type PointsProps = {
+  title?: string
+  content?: string
+  styleOverride?: string | null
+}
 
-export const useName = import.meta.file
-  .split(".")
-  .shift()
-  ?.toLowerCase()
+const allArticles = articles.map((article) => (
+  <Point {...article} />
+))
 
-const Points = async ({
+const Points = ({
   title = "Points",
   content = "Points content",
+  styleOverride = null,
 }: PointsProps) => {
-  const { css } = useCSS({ meta: import.meta })
+  const { css, useName } = useCSS({ meta: import.meta })
 
   return (
     <section class={useName}>
-      <style>{css}</style>
+      <style>{styleOverride ? styleOverride : css}</style>
       <div class="inner">
         <div class="intro">
           <Icon fill="0" iconName="4g_mobiledata" />
-          <h2 class="title">About us</h2>
-          <p>
-            SingleMum is a single dependency framework for
-            building web applications. It is a simple, fast,
-            and light framework. It is designed for
-            developers who want to build web applications
-            with a single dependency.
-          </p>
+          <h2 class="title">{title}</h2>
+          <p>{content}</p>
         </div>
-        <article>
-          <Icon iconName="zone_person_alert" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
-        <article>
-          <Icon iconName="child_care" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
-        <article>
-          <Icon iconName="child_care" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
-        <article>
-          <Icon iconName="child_care" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
-        <article>
-          <Icon iconName="child_care" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
-        <article>
-          <Icon iconName="child_care" />
-          <h3>Lorem ipsum dolor</h3>
-          <p>
-            Sit amet consectetur adipisicing elit. Earum
-            corporis tempora dolor maiores aliquid accusamus
-            est illum maxime, perferendis incidunt molestiae
-            cumque ea, cum et sit ex, veritatis expedita
-            repellendus.
-          </p>
-        </article>
+        {allArticles}
       </div>
     </section>
   )

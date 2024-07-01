@@ -1,41 +1,48 @@
 import { log } from "./logging"
-import { router } from "./router"
+import { handleGetPages } from "./router"
 
 const PORT = 9000
+export const BASE = process.env.BASE_SITE_URL ?? ""
 
-try {
-  Bun.serve({
-    port: PORT,
-    async fetch(request) {
-      const url = new URL(request.url)
+function handleGetAssets(url: URL) {
+  const pathRenamedToPublic = `./public${url.pathname}`
+  const file = Bun.file(pathRenamedToPublic)
 
-      if (url.pathname.startsWith("/assets")) {
-        const pathRenamedToPublic = `./public${url.pathname}`
-        const file = await Bun.file(pathRenamedToPublic)
+  const headers = {
+    "Cache-Control": "max-age=31536000",
+  }
 
-        if (file) {
-          return new Response(file)
-        } else {
-          return new Response("Not Found", { status: 404 })
-        }
-      }
-
-      const route = router.match(request)
-
-      if (!route) {
-        return new Response("Not Found", { status: 404 })
-      }
-
-      const module = await import(route.filePath)
-      const response = await module.default()
-
-      return new Response(response, {
-        headers: { "Content-Type": "text/html" },
-      })
-    },
+  return new Response(file ?? "Not Found", {
+    status: file ? 200 : 404,
+    headers: headers ?? {},
   })
-
-  log.listening("Listening on:", `http://localhost:${PORT}`)
-} catch (error) {
-  log.error("Failed to start server:", error)
 }
+
+async function serve(request: Request) {
+  const url = new URL(request.url)
+  const isAssets = url.pathname.startsWith("/assets")
+
+  if (isAssets) {
+    return handleGetAssets(url)
+  }
+
+  return handleGetPages(request)
+}
+
+function startServer() {
+  try {
+    Bun.serve({
+      hostname: "::",
+      port: process.env.PORT ?? PORT,
+      async fetch(request) {
+        return serve(request)
+      },
+    })
+
+    log.listening("Listening on port:", `${PORT}`)
+  } catch (error) {
+    log.error("Failed to start server:", error)
+  }
+}
+
+startServer()
