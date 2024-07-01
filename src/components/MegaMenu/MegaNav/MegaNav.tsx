@@ -1,8 +1,7 @@
+import BaseLinePopOver from "@components/BaseLinePopOver"
 import { useCSS } from "@hooks/useCSS"
 import h from "@utils/jsxFactory"
 import { mkClass } from "@utils/mkClass"
-
-type MegaMenuProps = { title?: string; children?: string }
 
 const MegaNavContent = () => {
   return (
@@ -73,8 +72,10 @@ const MegaNav = () => {
       <a class="trigger" href="/gallery">
         Gallery
       </a>
-      <button class="trigger">Grid</button>
-      {/* <input type="checkbox" switch class="special"></input>{" "} */}
+      <button class="trigger" popovertarget="basegrid">
+        Grid
+      </button>
+      <BaseLinePopOver />
     </nav>
   )
 }
