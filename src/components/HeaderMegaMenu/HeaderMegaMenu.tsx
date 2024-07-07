@@ -2,26 +2,33 @@ import Logo from "@components/Logo"
 import h from "@utils/jsxFactory"
 import { mkClass } from "@utils/mkClass"
 import { useCSS } from "src/hooks/useCSS"
+import HeaderMegaMenuInner from "./HeaderSurface"
 import MegaNav from "./MegaNav"
 
-type MegaMenuProps = { title?: string; children?: string }
+type HeaderMegaMenuProps = {
+  title?: string
+  children?: string
+}
 
-const MegaMenu = ({ title, children }: MegaMenuProps) => {
+const HeaderMegaMenu = ({
+  title,
+  children,
+}: HeaderMegaMenuProps) => {
   const { css } = useCSS({ meta: import.meta })
 
   return (
     <header
-      id="liambest"
+      id="headerMegaMenu"
       popover="auto"
       class={mkClass(import.meta.file)}
     >
       <style>{css}</style>
-      <div class="inner">
+      <HeaderMegaMenuInner>
         <Logo />
         <MegaNav />
-      </div>
+      </HeaderMegaMenuInner>
     </header>
   )
 }
 
-export default MegaMenu
+export default HeaderMegaMenu
