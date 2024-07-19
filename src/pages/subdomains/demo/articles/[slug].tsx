@@ -1,5 +1,5 @@
 import AppTheme from "@layouts/app-theme"
-import ArticlePage from "src/themes/demo/components/ArticlePage"
+import { ArticlePage } from "src/themes/demo/components/ArticlePage"
 import Footer from "@components/Footer"
 import GridConfig from "@components/GridConfig"
 import MegaMenu from "@components/HeaderMegaMenu"
@@ -26,6 +26,7 @@ const pageArticlePage = async ({
       return href === slugPage ? (
         <ArticlePage
           {...article}
+          slug={slug}
           style={
             "view-transition-name: article-" +
             (index + 1) +
@@ -39,7 +40,7 @@ const pageArticlePage = async ({
   )
 
   return (
-    <AppTheme title={`Gallery | ${slug}`} subdomain="demo">
+    <AppTheme title={`Article | ${slug}`} subdomain="demo">
       <GridConfig>
         <MobileMenuTrigger />
         <MegaMenu />

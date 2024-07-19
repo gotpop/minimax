@@ -57,13 +57,14 @@ p {
   letter-spacing: 0.015em;
   /* line-height: 1.4em; */
   line-height: 32px;
-  margin-block: 0 2rem;
+  /* margin-block: 0 2rem; */
   max-width: 90ch;
   color: var(--gray-700);
   padding-top: calc(1rem - 1cap);
-  text-align: pretty;
+  text-wrap: pretty;
 
-  &:last-child {
+  &:
+  last-child {
     margin-bottom: 0;
   }
 }
@@ -71,6 +72,10 @@ p {
 a {
   color: inherit;
   text-decoration: none;
+
+  > :is(h1, h2, h3, h4, h5, h6) {
+    margin-block-end: 0;
+  }
 
   &:not([class]) {
     text-underline-offset: 0.3em;
@@ -111,5 +116,19 @@ button {
   &:focus-visible {
     outline: 2px dashed var(--accent);
     outline-offset: var(--outline-offset, -0.5em);
+  }
+}
+
+h3 {
+  font-size: 44px;
+  line-height: 4rem;
+}
+
+p {
+  line-height: 32px;
+  padding-top: calc(1rem - 1cap);
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
