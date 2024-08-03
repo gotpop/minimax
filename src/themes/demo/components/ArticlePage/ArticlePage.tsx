@@ -20,12 +20,12 @@ export function ArticlePage({
   return (
     <Fragment>
       <style>{css}</style>
-      <ContentNav section={section} idSlug={idSlug} />
+      <ContentNav section={section} />
       <section
         class={mkClass(import.meta.file)}
         style={style}
       >
-        {pageContent(section, idSlug)}
+        {pageContent(section)}
       </section>
     </Fragment>
   )
